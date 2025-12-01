@@ -63,7 +63,7 @@ def safe_name(teams, tid):
 def parse_dt(dt_str):
     return datetime.strptime(dt_str, "%Y-%m-%dT%H:%M:%S")
 
-def write_ics(events, teams, filename="HolbrookUnited_schedule.ics"):
+def write_ics(events, teams, filename="U14B_schedule.ics"):
     with open(filename, "w", encoding="utf-8") as f:
         f.write("BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:dash_scraper\n")
         for ev in events:
