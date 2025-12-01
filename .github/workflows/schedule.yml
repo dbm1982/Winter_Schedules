@@ -3,10 +3,10 @@ name: Bulldogs Schedule Scraper
 on:
   schedule:
     - cron: "0 6 * * *"   # runs every day at 6 AM UTC
-  workflow_dispatch:       # allows manual runs
+  workflow_dispatch:       # allows manual runs from the Actions tab
 
 permissions:
-  contents: write   # <-- give GITHUB_TOKEN permission to push commits
+  contents: write   # allow GITHUB_TOKEN to push commits
 
 jobs:
   scrape:
@@ -30,8 +30,10 @@ jobs:
           mkdir -p docs
           cp bulldogs_schedule.ics docs/
 
-      - name: Commit and Push updated ICS
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+      - name: Commit updated ICS
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add docs/bulldogs_schedule.ics
+          git commit -m "Update Bulldogs schedule" || echo "No changes to commit"
+          git push
