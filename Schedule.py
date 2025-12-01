@@ -30,6 +30,12 @@ RESOURCE_AREA_MAP = {
     "8": "Quarter 2D",
 }
 
+# ✅ Physical address for directions
+VENUE_ADDRESS = "Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190"
+
+# ✅ Permanent team page link
+TEAM_PAGE_URL = "https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2368"
+
 def fetch_league_data():
     r = requests.get(LEAGUE_URL)
     r.raise_for_status()
@@ -84,13 +90,20 @@ def write_ics(events, teams, filename="bulldogs_schedule.ics"):
             resource_name = RESOURCE_MAP.get(resource_id, f"Resource {resource_id}")
             area_name = RESOURCE_AREA_MAP.get(area_id, f"Area {area_id}")
 
+            # Notes/description field
+            notes = (
+                f"Field Assignment: {resource_name}: {area_name}\\n"
+                f"Team Page: {TEAM_PAGE_URL}"
+            )
+
             f.write("BEGIN:VEVENT\n")
             f.write(f"UID:{uid}\n")
             f.write(f"DTSTAMP:{start_ics}Z\n")
             f.write(f"DTSTART;TZID={TIMEZONE}:{start_ics}\n")
             f.write(f"DTEND;TZID={TIMEZONE}:{end_ics}\n")
             f.write(f"SUMMARY:{summary}\n")
-            f.write(f"LOCATION:Union Point Sports - {resource_name}: {area_name}\n")
+            f.write(f"LOCATION:{VENUE_ADDRESS}\n")   # ✅ physical address for directions
+            f.write(f"DESCRIPTION:{notes}\n")        # ✅ bubble/quarter + link in notes
             f.write("END:VEVENT\n")
         f.write("END:VCALENDAR\n")
 
@@ -117,7 +130,7 @@ def main():
         resource_name = RESOURCE_MAP.get(resource_id, f"Resource {resource_id}")
         area_name = RESOURCE_AREA_MAP.get(area_id, f"Area {area_id}")
 
-        print(f"{start_str}–{end_str} {hname} vs {vname} @ Union Point Sports - {resource_name}: {area_name}")
+        print(f"{start_str}–{end_str} {hname} vs {vname} @ {resource_name}: {area_name}")
 
     write_ics(bulldogs_games, teams)
     print("✅ Bulldogs-only ICS generated: bulldogs_schedule.ics")
