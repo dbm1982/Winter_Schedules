@@ -1,0 +1,39 @@
+name: U14B Schedule Scraper
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Schedule
+        run: python U14B_Schedule.py   # <-- your U14B script
+
+      - name: Move ICS to docs
+        run: |
+          mkdir -p docs
+          cp U14B_schedule.ics docs/
+
+      - name: Commit updated ICS
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add docs/U14B_schedule.ics
+          git commit -m "Update U14B schedule" || echo "No changes to commit"
+          git push
