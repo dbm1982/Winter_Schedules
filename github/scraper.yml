@@ -22,8 +22,15 @@ jobs:
       - name: Run Schedule
         run: python Schedule.py
 
-      - name: Upload ICS artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: bulldogs-schedule
-          path: bulldogs_schedule.ics
+      - name: Move ICS to docs
+        run: |
+          mkdir -p docs
+          cp bulldogs_schedule.ics docs/
+
+      - name: Commit updated ICS
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add docs/bulldogs_schedule.ics
+          git commit -m "Update Bulldogs schedule"
+          git push
