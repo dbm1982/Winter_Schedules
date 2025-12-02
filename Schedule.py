@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 
+# League 547 = U10G HAYSA Bulldogs league
 LEAGUE_URL = (
     "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/547"
     "?cache[save]=false"
@@ -10,7 +11,7 @@ LEAGUE_URL = (
 TIMEZONE = "America/New_York"
 BULLDOGS_ID = "2368"
 
-# ✅ Manual lookup dictionaries based on what you confirmed from the site
+# ✅ Manual lookup dictionaries based on what was confirmed from the site
 RESOURCE_MAP = {
     "1": "Bubble 1",
     "2": "Bubble 2",
