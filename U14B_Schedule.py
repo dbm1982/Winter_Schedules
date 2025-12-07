@@ -30,10 +30,12 @@ RESOURCE_AREA_MAP = {
 VENUE_ADDRESS = "Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190"
 TEAM_PAGE_URL = "https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586"
 
+
 def fetch_league_data():
     r = requests.get(LEAGUE_URL)
     r.raise_for_status()
     return r.json()
+
 
 def build_team_map(included):
     teams = {}
@@ -44,6 +46,7 @@ def build_team_map(included):
             teams[tid] = name
     teams[HOLBROOK_ID] = teams.get(HOLBROOK_ID, "Holbrook United")
     return teams
+
 
 def filter_team_events(included):
     games = []
@@ -57,13 +60,66 @@ def filter_team_events(included):
             games.append(item)
     return games
 
+
+def index_stat_events(included):
+    """
+    Build a map: scores_by_event[event_id][team_id] = total_goals (sum of 'value')
+    """
+    scores_by_event = {}
+    for item in included:
+        if item.get("type") != "stat-events":
+            continue
+        attrs = item.get("attributes", {}) or {}
+        event_id = str(attrs.get("event_id"))
+        team_id = str(attrs.get("team_id"))
+        value = attrs.get("value", 0) or 0
+        if not event_id or not team_id:
+            continue
+        scores_by_event.setdefault(event_id, {})
+        scores_by_event[event_id][team_id] = scores_by_event[event_id].get(team_id, 0) + value
+    return scores_by_event
+
+
 def safe_name(teams, tid):
     return teams.get(tid, f"Team {tid}")
+
 
 def parse_dt(dt_str):
     return datetime.strptime(dt_str, "%Y-%m-%dT%H:%M:%S")
 
-def write_ics(events, teams, filename="U14B_schedule.ics"):
+
+def get_score_for_event(ev, scores_by_event):
+    """
+    Determine the score for an event using the stat-events index.
+    Returns 'H-A' string or None if unavailable.
+    """
+    attrs = ev.get("attributes", {}) or {}
+    eid = str(ev.get("id"))
+    htid = str(attrs.get("hteam_id"))
+    vtid = str(attrs.get("vteam_id"))
+
+    # Prefer direct hscore/vscore if present
+    hscore = attrs.get("hscore")
+    vscore = attrs.get("vscore")
+    if hscore is not None and vscore is not None:
+        return f"{hscore}-{vscore}"
+
+    # Fallback: sum stat-events
+    event_scores = scores_by_event.get(eid, {})
+    if not event_scores:
+        return None
+
+    home_goals = event_scores.get(htid, 0)
+    away_goals = event_scores.get(vtid, 0)
+
+    # Only show if at least one side has a nonzero score
+    if home_goals == 0 and away_goals == 0:
+        return None
+
+    return f"{home_goals}-{away_goals}"
+
+
+def write_ics(events, teams, scores_by_event, filename="U14B_schedule.ics"):
     with open(filename, "w", encoding="utf-8") as f:
         f.write("BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:dash_scraper\n")
         for ev in events:
@@ -75,7 +131,7 @@ def write_ics(events, teams, filename="U14B_schedule.ics"):
 
             hteam = safe_name(teams, str(attrs.get("hteam_id")))
             vteam = safe_name(teams, str(attrs.get("vteam_id")))
-            summary = f"{hteam} vs {vteam}"
+            summary = f"{hteam} vs {vteam}"  # matchup only
             uid = f"{ev['id']}@unionpointsports"
 
             resource_id = str(attrs.get("resource_id"))
@@ -83,10 +139,14 @@ def write_ics(events, teams, filename="U14B_schedule.ics"):
             resource_name = RESOURCE_MAP.get(resource_id, f"Resource {resource_id}")
             area_name = RESOURCE_AREA_MAP.get(area_id, f"Area {area_id}")
 
+            # Notes/description field (score only in notes)
+            score = get_score_for_event(ev, scores_by_event)
             notes = (
                 f"Field Assignment: {resource_name}: {area_name}\\n"
                 f"Team Page: {TEAM_PAGE_URL}"
             )
+            if score:
+                notes += f"\\nFinal Score: {score}"
 
             f.write("BEGIN:VEVENT\n")
             f.write(f"UID:{uid}\n")
@@ -99,11 +159,13 @@ def write_ics(events, teams, filename="U14B_schedule.ics"):
             f.write("END:VEVENT\n")
         f.write("END:VCALENDAR\n")
 
+
 def main():
     data = fetch_league_data()
-    included = data.get("included", [])
+    included = data.get("included", []) or []
     teams = build_team_map(included)
     holbrook_games = filter_team_events(included)
+    scores_by_event = index_stat_events(included)
 
     holbrook_games.sort(key=lambda e: e["attributes"]["start"])
 
@@ -122,10 +184,12 @@ def main():
         resource_name = RESOURCE_MAP.get(resource_id, f"Resource {resource_id}")
         area_name = RESOURCE_AREA_MAP.get(area_id, f"Area {area_id}")
 
+        # Console preview: no score here
         print(f"{start_str}–{end_str} {hname} vs {vname} @ {resource_name}: {area_name}")
 
-    write_ics(holbrook_games, teams)
+    write_ics(holbrook_games, teams, scores_by_event)
     print("✅ Holbrook United-only ICS generated: U14B_schedule.ics")
+
 
 if __name__ == "__main__":
     main()
