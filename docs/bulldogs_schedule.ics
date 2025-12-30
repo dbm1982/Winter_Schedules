@@ -20,15 +20,6 @@ LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
 DESCRIPTION:Field Assignment: Bubble 2: Quarter 2B\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2368\nFinal Score: 8-1
 END:VEVENT
 BEGIN:VEVENT
-UID:26406@unionpointsports
-DTSTAMP:20251220T130000Z
-DTSTART;TZID=America/New_York:20251220T130000
-DTEND;TZID=America/New_York:20251220T135000
-SUMMARY:(U10G) HAYSA Bulldogs vs (U10G) Milton Rockets
-LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 1: Quarter 1D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2368
-END:VEVENT
-BEGIN:VEVENT
 UID:26412@unionpointsports
 DTSTAMP:20260103T070000Z
 DTSTART;TZID=America/New_York:20260103T070000
@@ -36,6 +27,15 @@ DTEND;TZID=America/New_York:20260103T075000
 SUMMARY:(U10G) HAYSA Bulldogs vs (U10G) Kingston
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
 DESCRIPTION:Field Assignment: Bubble 2: Quarter 2B\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2368
+END:VEVENT
+BEGIN:VEVENT
+UID:26406@unionpointsports
+DTSTAMP:20260110T070000Z
+DTSTART;TZID=America/New_York:20260110T070000
+DTEND;TZID=America/New_York:20260110T075000
+SUMMARY:(U10G) HAYSA Bulldogs vs (U10G) Milton Rockets
+LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
+DESCRIPTION:Field Assignment: Bubble 2: Quarter 2A\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2368
 END:VEVENT
 BEGIN:VEVENT
 UID:26416@unionpointsports
