@@ -1,9 +1,9 @@
 import requests
 from datetime import datetime
 
-# League 577 = Holbrook United's league
+# League 632 = Holbrook United's league
 LEAGUE_URL = (
-    "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/577"
+    "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/632"
     "?cache[save]=false"
     "&include=sport,teams.allEvents.statEvents.stat"
     "&company=unionpointsports"
@@ -28,7 +28,7 @@ RESOURCE_AREA_MAP = {
 }
 
 VENUE_ADDRESS = "Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190"
-TEAM_PAGE_URL = "https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586"
+TEAM_PAGE_URL = "https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/632"
 
 
 def fetch_league_data():
@@ -193,3 +193,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
