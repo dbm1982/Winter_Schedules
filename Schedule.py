@@ -1,9 +1,9 @@
 import requests
 from datetime import datetime
 
-# League 547 = U10G HAYSA Bulldogs league
+# League 632 = U10G HAYSA Bulldogs league
 LEAGUE_URL = (
-    "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/547"
+    "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/632"
     "?cache[save]=false"
     "&include=sport,teams.allEvents.statEvents.stat"
     "&company=unionpointsports"
