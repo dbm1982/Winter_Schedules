@@ -1,0 +1,39 @@
+name: U10G Schedule Scraper
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # runs every day at 6 AM UTC
+  workflow_dispatch:       # allows manual runs from the Actions tab
+
+permissions:
+  contents: write   # allow GITHUB_TOKEN to push commits
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Schedule
+        run: python U10G_Schedule.py   # <-- must match your script filename
+
+      - name: Move ICS to docs
+        run: |
+          mkdir -p docs
+          cp U10G_schedule.ics docs/
+
+      - name: Commit updated ICS
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add docs/U10G_schedule.ics
+          git commit -m "Update U10G schedule" || echo "No changes to commit"
+          git push
