@@ -3,13 +3,13 @@ from datetime import datetime
 
 # League 632 = U10G HAYSA Bulldogs league
 LEAGUE_URL = (
-    "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/632"
+    "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/574"
     "?cache[save]=false"
     "&include=sport,teams.allEvents.statEvents.stat"
     "&company=unionpointsports"
 )
 TIMEZONE = "America/New_York"
-BULLDOGS_ID = "2368"
+BULLDOGS_ID = "2340"
 
 # ✅ Manual lookup dictionaries based on what was confirmed from the site
 RESOURCE_MAP = {
