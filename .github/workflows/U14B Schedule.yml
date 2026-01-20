@@ -23,7 +23,7 @@ jobs:
         run: pip install requests
 
       - name: Run Schedule
-        run: python U14B_Schedule.py   # <-- must match your script filename
+        run: python U14B_Schedule_Session2.py   # <-- must match your script filename
 
       - name: Move ICS to docs
         run: |
