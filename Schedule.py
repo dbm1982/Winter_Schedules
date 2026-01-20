@@ -181,7 +181,7 @@ def main():
         print(f"{start_str}–{end_str} {hname} vs {vname} @ {resource_name}: {area_name}")
 
     write_ics(bulldogs_games, teams, scores_by_event)
-    print("✅ Session 1 ICS generated: U10G_Session1.ics")
+    print("✅ Session 1 ICS generated: bulldogs_schedule.ics")
 
 
 if __name__ == "__main__":
