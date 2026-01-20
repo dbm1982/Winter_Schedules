@@ -1,40 +1,37 @@
 import requests
 from datetime import datetime
 
-# League 632 = U10G HAYSA Bulldogs league
+# Session 1: U10G HAYSA Bulldogs
 LEAGUE_URL = (
-    "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/574"
+    "https://apps.daysmartrecreation.com/dash/jsonapi/api/v1/leagues/547"
     "?cache[save]=false"
     "&include=sport,teams.allEvents.statEvents.stat"
     "&company=unionpointsports"
 )
-TIMEZONE = "America/New_York"
-BULLDOGS_ID = "2340"
 
-# ✅ Manual lookup dictionaries based on what was confirmed from the site
+TIMEZONE = "America/New_York"
+
+# Correct Session 1 team ID
+BULLDOGS_ID = "2368"
+
 RESOURCE_MAP = {
     "1": "Bubble 1",
     "2": "Bubble 2",
 }
 
 RESOURCE_AREA_MAP = {
-    # Bubble 1 quarters
     "1": "Quarter 1A",
     "2": "Quarter 1B",
     "3": "Quarter 1C",
     "4": "Quarter 1D",
-
-    # Bubble 2 quarters
     "5": "Quarter 2A",
     "6": "Quarter 2B",
     "7": "Quarter 2C",
     "8": "Quarter 2D",
 }
 
-# ✅ Physical address for directions
 VENUE_ADDRESS = "Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190"
 
-# ✅ Permanent team page link
 TEAM_PAGE_URL = "https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2368"
 
 
@@ -51,6 +48,7 @@ def build_team_map(included):
             tid = item.get("id")
             name = (item.get("attributes") or {}).get("name") or f"Team {tid}"
             teams[tid] = name
+
     teams[BULLDOGS_ID] = teams.get(BULLDOGS_ID, "(U10G) HAYSA Bulldogs")
     return teams
 
@@ -69,9 +67,6 @@ def filter_bulldogs_events(included):
 
 
 def index_stat_events(included):
-    """
-    Build a map: scores_by_event[event_id][team_id] = total_goals (sum of 'value')
-    """
     scores_by_event = {}
     for item in included:
         if item.get("type") != "stat-events":
@@ -96,22 +91,16 @@ def parse_dt(dt_str):
 
 
 def get_score_for_event(ev, scores_by_event):
-    """
-    Determine the score for an event using the stat-events index.
-    Returns 'H-A' string or None if unavailable.
-    """
     attrs = ev.get("attributes", {}) or {}
     eid = str(ev.get("id"))
     htid = str(attrs.get("hteam_id"))
     vtid = str(attrs.get("vteam_id"))
 
-    # Prefer direct hscore/vscore if present
-    hscore = attrs.get("hscore")
-    vscore = attrs.get("vscore")
+    hscore = attrs.get("home_score")
+    vscore = attrs.get("visiting_score")
     if hscore is not None and vscore is not None:
         return f"{hscore}-{vscore}"
 
-    # Fallback: sum stat-events
     event_scores = scores_by_event.get(eid, {})
     if not event_scores:
         return None
@@ -119,14 +108,13 @@ def get_score_for_event(ev, scores_by_event):
     home_goals = event_scores.get(htid, 0)
     away_goals = event_scores.get(vtid, 0)
 
-    # Only show if at least one side has a nonzero score
     if home_goals == 0 and away_goals == 0:
         return None
 
     return f"{home_goals}-{away_goals}"
 
 
-def write_ics(events, teams, scores_by_event, filename="bulldogs_schedule.ics"):
+def write_ics(events, teams, scores_by_event, filename="U10G_Session1.ics"):
     with open(filename, "w", encoding="utf-8") as f:
         f.write("BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:dash_scraper\n")
         for ev in events:
@@ -138,16 +126,14 @@ def write_ics(events, teams, scores_by_event, filename="bulldogs_schedule.ics"):
 
             hteam = safe_name(teams, str(attrs.get("hteam_id")))
             vteam = safe_name(teams, str(attrs.get("vteam_id")))
-            summary = f"{hteam} vs {vteam}"  # matchup only
+            summary = f"{hteam} vs {vteam}"
             uid = f"{ev['id']}@unionpointsports"
 
-            # Resolve resource IDs
             resource_id = str(attrs.get("resource_id"))
             area_id = str(attrs.get("resource_area_id"))
             resource_name = RESOURCE_MAP.get(resource_id, f"Resource {resource_id}")
             area_name = RESOURCE_AREA_MAP.get(area_id, f"Area {area_id}")
 
-            # Notes/description field
             score = get_score_for_event(ev, scores_by_event)
             notes = (
                 f"Field Assignment: {resource_name}: {area_name}\\n"
@@ -192,11 +178,10 @@ def main():
         resource_name = RESOURCE_MAP.get(resource_id, f"Resource {resource_id}")
         area_name = RESOURCE_AREA_MAP.get(area_id, f"Area {area_id}")
 
-        # Console preview: no score here
         print(f"{start_str}–{end_str} {hname} vs {vname} @ {resource_name}: {area_name}")
 
     write_ics(bulldogs_games, teams, scores_by_event)
-    print("✅ Bulldogs-only ICS generated: bulldogs_schedule.ics")
+    print("✅ Session 1 ICS generated: U10G_Session1.ics")
 
 
 if __name__ == "__main__":
