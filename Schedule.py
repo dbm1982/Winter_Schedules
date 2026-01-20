@@ -153,7 +153,6 @@ def write_ics(events, teams, scores_by_event, filename="U10G_Session1.ics"):
             f.write("END:VEVENT\n")
         f.write("END:VCALENDAR\n")
 
-
 def main():
     data = fetch_league_data()
     included = data.get("included", []) or []
@@ -180,7 +179,7 @@ def main():
 
         print(f"{start_str}–{end_str} {hname} vs {vname} @ {resource_name}: {area_name}")
 
-    write_ics(bulldogs_games, teams, scores_by_event)
+    write_ics(bulldogs_games, teams, scores_by_event, filename="bulldogs_schedule.ics")
     print("✅ Session 1 ICS generated: bulldogs_schedule.ics")
 
 
