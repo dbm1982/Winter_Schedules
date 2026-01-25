@@ -53,7 +53,7 @@ DTSTART;TZID=America/New_York:20260124T070000
 DTEND;TZID=America/New_York:20260124T075000
 SUMMARY:(U10G) Weymouth - Daley vs (U10G) HAYSA Bulldogs
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 2: Quarter 2D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2368
+DESCRIPTION:Field Assignment: Bubble 2: Quarter 2D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2368\nFinal Score: 8-0
 END:VEVENT
 BEGIN:VEVENT
 UID:26425@unionpointsports
