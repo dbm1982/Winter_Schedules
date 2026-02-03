@@ -28,7 +28,7 @@ RESOURCE_AREA_MAP = {
 }
 
 VENUE_ADDRESS = "Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190"
-TEAM_PAGE_URL = "https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/632"
+TEAM_PAGE_URL = "https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586"
 
 
 def fetch_league_data():
