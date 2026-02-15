@@ -8,7 +8,7 @@ DTSTART;TZID=America/New_York:20260214T193000
 DTEND;TZID=America/New_York:20260214T202000
 SUMMARY:(U14B) Holbrook United vs (U14B) Weymouth - Hughes
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 2: Quarter 2B\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586
+DESCRIPTION:Field Assignment: Bubble 2: Quarter 2B\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586\nFinal Score: 3-2
 END:VEVENT
 BEGIN:VEVENT
 UID:27983@unionpointsports
@@ -17,7 +17,7 @@ DTSTART;TZID=America/New_York:20260214T203000
 DTEND;TZID=America/New_York:20260214T212000
 SUMMARY:(U14B) Titans FC vs (U14B) Holbrook United
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 2: Quarter 2C\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586
+DESCRIPTION:Field Assignment: Bubble 2: Quarter 2C\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586\nFinal Score: 8-0
 END:VEVENT
 BEGIN:VEVENT
 UID:27988@unionpointsports
