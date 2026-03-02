@@ -26,7 +26,7 @@ DTSTART;TZID=America/New_York:20260228T174500
 DTEND;TZID=America/New_York:20260228T183500
 SUMMARY:(U14B) Holbrook United vs (U14B) MIFC 2012 SE
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 2: Quarter 2D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586
+DESCRIPTION:Field Assignment: Bubble 2: Quarter 2D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586\nFinal Score: 1-7
 END:VEVENT
 BEGIN:VEVENT
 UID:27991@unionpointsports
@@ -35,7 +35,7 @@ DTSTART;TZID=America/New_York:20260228T184500
 DTEND;TZID=America/New_York:20260228T193500
 SUMMARY:(U14B) Whitman Hanson (Kershner) vs (U14B) Holbrook United
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 2: Quarter 2C\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586
+DESCRIPTION:Field Assignment: Bubble 2: Quarter 2C\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586\nFinal Score: 0-1
 END:VEVENT
 BEGIN:VEVENT
 UID:27995@unionpointsports
