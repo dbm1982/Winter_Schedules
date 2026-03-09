@@ -44,7 +44,7 @@ DTSTART;TZID=America/New_York:20260307T190000
 DTEND;TZID=America/New_York:20260307T195000
 SUMMARY:(U14B) Tristar vs (U14B) Holbrook United
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 2: Quarter 2D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586
+DESCRIPTION:Field Assignment: Bubble 2: Quarter 2D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586\nFinal Score: 10-0
 END:VEVENT
 BEGIN:VEVENT
 UID:27997@unionpointsports
