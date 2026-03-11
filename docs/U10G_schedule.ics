@@ -38,21 +38,21 @@ LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
 DESCRIPTION:Field Assignment: Bubble 2: Quarter 2B\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2640\nFinal Score: 1-5
 END:VEVENT
 BEGIN:VEVENT
-UID:27834@unionpointsports
-DTSTAMP:20260314T143000Z
-DTSTART;TZID=America/New_York:20260314T143000
-DTEND;TZID=America/New_York:20260314T152000
-SUMMARY:(U10G) Abington (McLoughlin) vs (U10G) HAYSA Bulldogs
-LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 1: Quarter 1B\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2640
-END:VEVENT
-BEGIN:VEVENT
 UID:27836@unionpointsports
-DTSTAMP:20260314T153000Z
-DTSTART;TZID=America/New_York:20260314T153000
-DTEND;TZID=America/New_York:20260314T162000
+DTSTAMP:20260315T100000Z
+DTSTART;TZID=America/New_York:20260315T100000
+DTEND;TZID=America/New_York:20260315T105000
 SUMMARY:(U10G) HAYSA Bulldogs vs (U10G) Weymouth - Vickers
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 1: Quarter 1A\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2640
+DESCRIPTION:Field Assignment: Bubble 1: Quarter 1D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2640
+END:VEVENT
+BEGIN:VEVENT
+UID:27834@unionpointsports
+DTSTAMP:20260315T110000Z
+DTSTART;TZID=America/New_York:20260315T110000
+DTEND;TZID=America/New_York:20260315T115000
+SUMMARY:(U10G) Abington (McLoughlin) vs (U10G) HAYSA Bulldogs
+LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
+DESCRIPTION:Field Assignment: Bubble 1: Quarter 1D\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2640
 END:VEVENT
 END:VCALENDAR
