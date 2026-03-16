@@ -53,6 +53,15 @@ DTSTART;TZID=America/New_York:20260314T183000
 DTEND;TZID=America/New_York:20260314T192000
 SUMMARY:(U14B) Quincy 8.4 vs (U14B) Holbrook United
 LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
-DESCRIPTION:Field Assignment: Bubble 1: Quarter 1B\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586
+DESCRIPTION:Field Assignment: Bubble 1: Quarter 1B\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586\nFinal Score: 0-2
+END:VEVENT
+BEGIN:VEVENT
+UID:28693@unionpointsports
+DTSTAMP:20260321T080000Z
+DTSTART;TZID=America/New_York:20260321T080000
+DTEND;TZID=America/New_York:20260321T085000
+SUMMARY:(U14B) Holbrook United vs (U14B) Quincy 8.4
+LOCATION:Union Point Sports Complex, 170 Memorial Grove Ave, Weymouth, MA 02190
+DESCRIPTION:Field Assignment: Bubble 1: Quarter 1A\nTeam Page: https://apps.daysmartrecreation.com/dash/x/#/online/unionpointsports/teams/2586
 END:VEVENT
 END:VCALENDAR
